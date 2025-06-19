@@ -1,1 +1,1 @@
-# discordy-messager
+# discordy-messenger
