@@ -3,7 +3,7 @@ import { useAppSelector } from "../../hooks/hooks";
 
 type Props = {
   children: React.ReactNode;
-  redirectTo: string;
+  redirectTo?: string;
 };
 
 const RestrictedRoute = ({ children, redirectTo = "/" }: Props) => {
