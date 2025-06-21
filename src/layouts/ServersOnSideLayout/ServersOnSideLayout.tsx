@@ -1,11 +1,11 @@
 import React from "react";
 import ServerSelectSideMenu from "../../components/ServerSelectSideMenu/ServerSelectSideMenu";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
-const SoloPageLayout = ({ children }: Props) => {
+const ServersOnSideLayout = ({ children }: Props) => {
   return (
     <div>
       <ServerSelectSideMenu />
@@ -14,4 +14,4 @@ const SoloPageLayout = ({ children }: Props) => {
   );
 };
 
-export default SoloPageLayout;
+export default ServersOnSideLayout;

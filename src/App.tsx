@@ -1,18 +1,29 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
-import MainPage from "./pages/MainPage/MainPage";
-import ServerPage from "./pages/ServerPage/ServerPage";
-import OptionsPage from "./pages/OptionsPage/OptionsPage";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import { lazy } from "react";
+import ServersOnSideLayout from "./layouts/ServersOnSideLayout/ServersOnSideLayout";
+
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
+const ServerPage = lazy(() => import("./pages/ServerPage/ServerPage"));
+const OptionsPage = lazy(() => import("./pages/OptionsPage/OptionsPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage/RegisterPage"));
+const Chat = lazy(() => import("./components/Chat/Chat"));
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/"
+          element={
+            <ServersOnSideLayout>
+              <MainPage />
+            </ServersOnSideLayout>
+          }
+        />
         <Route
           path="/options"
           element={
@@ -25,10 +36,14 @@ function App() {
           path="/:serverId"
           element={
             <PrivateRoute>
-              <ServerPage />
+              <ServersOnSideLayout>
+                <ServerPage />
+              </ServersOnSideLayout>
             </PrivateRoute>
           }
-        />
+        >
+          <Route path=":channelId" element={<Chat />} />
+        </Route>
         <Route
           path="/login"
           element={
@@ -45,7 +60,9 @@ function App() {
             </RestrictedRoute>
           }
         />
+        <Route path="*" element={<p>Not Found</p>} />
       </Routes>
+      <Outlet />
     </>
   );
 }

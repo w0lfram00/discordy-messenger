@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/hooks";
+import { useAppSelector } from "../../hooks/reduxForTypeScript";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
   redirectTo?: string;
-};
+}
 
 const RestrictedRoute = ({ children, redirectTo = "/" }: Props) => {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);

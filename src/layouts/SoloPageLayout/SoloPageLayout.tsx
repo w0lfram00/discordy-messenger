@@ -1,8 +1,8 @@
 import React from "react";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
 const SoloPageLayout = ({ children }: Props) => {
   return <div>{children}</div>;
