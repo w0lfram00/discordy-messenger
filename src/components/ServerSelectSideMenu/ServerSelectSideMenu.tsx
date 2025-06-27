@@ -1,6 +1,7 @@
 import React from "react";
 import type { Server } from "../../types/server";
 import ServerIcon from "./ServerIcon";
+import s from "./ServerSelectSideMenu.module.css";
 
 type Props = {
   servers: Array<Server>;
@@ -8,9 +9,9 @@ type Props = {
 
 const ServerSelectSideMenu = ({ servers }: Props) => {
   return (
-    <div>
+    <div className={s.serverSideMenu}>
       {servers.map((server) => (
-        <ServerIcon server={server} />
+        <ServerIcon key={server._id} server={server} />
       ))}
     </div>
   );

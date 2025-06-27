@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export interface SliceState {
   count: number;
@@ -13,17 +13,14 @@ const slice = createSlice({
     resetCarsState: (state) => {
       state.count = 0;
     },
-    setFilter: (state, action: PayloadAction<number>) => {
-      state.filterOptions = action.payload;
-      state.filterOptions.page = 1;
-    },
+    setFilter: (state, action: PayloadAction<number>) => {},
   },
-  extraReducers: (builder) => {
-    builder.addCase(getCarsFiltered.fulfilled, (state, action) => {
-      state.cars.push(...action.payload.cars);
-      state.totalPages = action.payload.totalPages;
-    });
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(getCarsFiltered.fulfilled, (state, action) => {
+  //     state.cars.push(...action.payload.cars);
+  //     state.totalPages = action.payload.totalPages;
+  //   });
+  // },
 });
 
 export const mainReducer = slice.reducer;

@@ -38,15 +38,5 @@ p {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-@media screen and (width<1400px) {
-  .container {
-    margin: 0 120px;
-  }
+  cursor: pointer;
 }

@@ -1,0 +1,27 @@
+.serverSideMenu {
+  height: 100%;
+  width: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 2px 0px 2px 1px rgba(0, 0, 0, 0.2);
+  /* box-shadow-right: */
+
+  .serverIcon {
+    width: 160px;
+    min-height: 160px;
+    border-radius: 25%;
+    overflow: hidden;
+
+    display: flex;
+    img {
+      object-fit: cover;
+      place-self: center;
+    }
+  }
+}
