@@ -1,8 +1,19 @@
 {
-  "name": "discordy-messenger",
+  "name": "discordy-messenger-front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w0lfram00/discordy-messenger"
+  },
+  "keywords": [],
+  "author": "wolfram00 <ghjhjr11@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/w0lfram00/discordy-messenger/issues"
+  },
+  "homepage": "https://github.com/w0lfram00/discordy-messenger#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
