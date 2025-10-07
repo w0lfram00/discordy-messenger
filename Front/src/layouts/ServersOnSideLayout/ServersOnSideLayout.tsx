@@ -1,7 +1,7 @@
 import React from "react";
-import ServerSelectSideMenu from "../../components/ServerSelectSideMenu/ServerSelectSideMenu";
-import servers from "../../assets/testData/servers.json";
-import type { Server } from "../../types/server";
+// import ServerSelectSideMenu from "../../components/ServerSelectSideMenu/ServerSelectSideMenu";
+// import servers from "../../assets/testData/servers.json";
+// import type { Server } from "../../types/server";
 import s from "./ServersOnSideLayout.module.css";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 const ServersOnSideLayout = ({ children }: Props) => {
   return (
     <div className={s.viewport}>
-      <ServerSelectSideMenu servers={servers} />
+      {/* <ServerSelectSideMenu servers={} /> */}
       <div>{children}</div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import type { Server } from "../../types/server";
+import type { Server } from "../../interfaces/db";
 import s from "./ServerSelectSideMenu.module.css";
 
 interface Props {
