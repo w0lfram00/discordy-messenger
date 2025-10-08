@@ -10,7 +10,7 @@ interface Props {
 
 const ServersOnSideLayout = ({ children }: Props) => {
   return (
-    <div className={s.viewport}>
+    <div className="h-screen">
       {/* <ServerSelectSideMenu servers={} /> */}
       <div>{children}</div>
     </div>

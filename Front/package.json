@@ -1,13 +1,11 @@
 {
   "name": "discordy-messenger-front",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/w0lfram00/discordy-messenger"
   },
-  "keywords": [],
   "author": "wolfram00 <ghjhjr11@gmail.com>",
   "license": "ISC",
   "bugs": {
@@ -15,36 +13,29 @@
   },
   "homepage": "https://github.com/w0lfram00/discordy-messenger#readme",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.7.0",
-    "axios": "^1.9.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "next": "15.5.4",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0",
-    "react-redux": "^9.2.0",
-    "react-router-dom": "^7.6.0",
-    "redux-persist": "^6.0.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react-swc": "^3.9.0",
-    "eslint": "^9.25.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.4",
+    "@eslint/eslintrc": "^3"
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import type { Server } from "../../interfaces/db";
 import ServerIcon from "./ServerIcon";
 import s from "./ServerSelectSideMenu.module.css";
+import { Server } from "@/interfaces/db";
 
 type Props = {
   servers: Array<Server>;
