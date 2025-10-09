@@ -3,13 +3,23 @@ import { model, Schema } from 'mongoose';
 const usersSchema = new Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    personalId: { type: String, required: true },
+    email: { type: String, required: true },
+    img: { type: String },
     password: { type: String, required: true },
-    savedRecipes: [
+    servers: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'Recipe',
-        required: true,
+        _id: {
+          type: Schema.Types.ObjectId,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        img: {
+          type: String,
+        },
       },
     ],
   },

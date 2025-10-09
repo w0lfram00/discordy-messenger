@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const channelsSchema = new Schema(
+export const channelsSchema = new Schema(
   {
     name: { type: String, required: true },
     position: { type: Number, required: true },

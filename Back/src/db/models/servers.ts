@@ -1,14 +1,23 @@
 import { model, Schema } from 'mongoose';
+import { channelsSchema } from './channels.ts';
 
 const serversSchema = new Schema(
   {
     name: { type: String, required: true },
-    channels: [
+    channels: [channelsSchema],
+    users: [
       {
-        type: Schema.Types.ObjectId,
-        index: true,
-        ref: 'Channels',
-        required: true,
+        _id: {
+          type: Schema.Types.ObjectId,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        img: {
+          type: String,
+        },
       },
     ],
     img: { type: String },
