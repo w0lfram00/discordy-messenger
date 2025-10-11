@@ -1,0 +1,22 @@
+tags:
+  - Servers
+summary: Delete server
+operationId: deleteSrvr
+description: 'Delete existing server'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: serverId
+    required: true
+    schema:
+      type: string
+responses:
+  '204':
+    description: 'Successfully deleted server'
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

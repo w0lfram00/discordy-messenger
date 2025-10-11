@@ -1,0 +1,39 @@
+tags:
+  - Servers
+summary: Create a new server
+operationId: createSrvr
+description: 'Create a new server, creates base channels and joins creator to it'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - name
+        properties:
+          name:
+            type: string
+responses:
+  '201':
+    description: 'Successfully created server'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a server!
+            data:
+              $ref: ../../components/schemas/server.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'

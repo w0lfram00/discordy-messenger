@@ -1,0 +1,38 @@
+type: object
+required:
+  - _id
+  - name
+  - email
+properties:
+  _id:
+    description: "User's id"
+    type: string
+    example: 65e4decdd286b30065d54af9
+  name:
+    description: "User's shown name"
+    type: string
+    example: 'John Doe'
+  email:
+    description: "User's email"
+    type: string
+    example: exmple@gmail.com
+  servers:
+    description: 'List of servers User has joined'
+    type: array
+    items:
+      type: object
+      required:
+        - _id
+        - name
+        - img
+      properties:
+        _id:
+          description: "Server's id"
+          type: string
+        name:
+          description: 'Name of server'
+          type: string
+        img:
+          description: "Url to thumbnail of server (if it has no image returns 'no-image')"
+          type: string
+      example: 6462a8f74c3d0ddd28898069

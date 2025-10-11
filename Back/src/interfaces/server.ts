@@ -1,25 +1,20 @@
 import type { Types } from 'mongoose';
 import type { UserPreview } from './auth.ts';
 
-export interface ServerPreview {
-  _id: Types.ObjectId;
-  name: string;
-  img?: string | null;
-}
-
 export interface Channel {
-  _id: Types.ObjectId;
+  _id: string;
   name: string;
-  position: number;
 }
 
-export interface Server {
+export interface Srvr {
   _id: Types.ObjectId;
   name: string;
-  img?: string | null;
+  img: string;
   channels: Channel[];
   users: UserPreview[];
 }
+
+export interface SrvrPreview extends Pick<Srvr, '_id' | 'name' | 'img'> {}
 
 export interface Message {
   _id: Types.ObjectId;

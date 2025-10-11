@@ -1,0 +1,45 @@
+type: object
+required:
+  - _id
+  - name
+  - img
+  - channels
+  - users
+properties:
+  _id:
+    description: "Server's id"
+    type: string
+  name:
+    description: 'Name of server'
+    type: string
+  img:
+    description: "Url to thumbnail of server (if it has no image returns 'no-image')"
+    type: string
+  channels:
+    description: 'Channels in server'
+    type: array
+    items:
+      type: object
+      required:
+        - _id
+        - name
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+  users:
+    description: 'List of users who has joined this server and a little info about them'
+    type: object
+    required:
+      - _id
+      - name
+      - img
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      img:
+        description: "Url to thumbnail of server (if it has no image returns 'no-image')"
+        type: string

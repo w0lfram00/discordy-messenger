@@ -1,21 +1,16 @@
 import type { Request } from 'express';
 import type { Types } from 'mongoose';
-import type { ServerPreview } from './server.ts';
+import type { SrvrPreview } from './server.ts';
 
 export interface User {
   _id: Types.ObjectId;
-  personalId: string;
-  img?: string | null;
+  img: string;
   name: string;
   email: string;
-  servers: ServerPreview[];
+  servers: SrvrPreview[];
 }
 
-export interface UserPreview {
-  _id: Types.ObjectId;
-  name: string;
-  img?: string | null;
-}
+export interface UserPreview extends Pick<User, '_id' | 'name' | 'img'> {}
 
 export interface Session {
   _id: Types.ObjectId;

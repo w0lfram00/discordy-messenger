@@ -21,6 +21,7 @@ export const registerUser = async (payload: RegisterUser) => {
   return await UsersCollection.create({
     ...payload,
     password: encryptedPassword,
+    img: 'no-image',
   });
 };
 

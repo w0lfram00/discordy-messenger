@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: discordy
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: This is a documentation of students app
+tags:
+  - name: Auth
+    description: Auth operations.
+  - name: Servers
+    description: Operations with servers' existence or structure
+  - name: Users
+    description: Operations with users' data
+servers:
+  - url: http://localhost:3000
+paths:
+  /auth/register:
+    post:
+      $ref: '../swagger/paths/auth/register.yaml'
+  /auth/login:
+    post:
+      $ref: '../swagger/paths/auth/login.yaml'
+  /auth/refresh:
+    post:
+      $ref: '../swagger/paths/auth/refresh.yaml'
+  /auth/logout:
+    post:
+      $ref: '../swagger/paths/auth/logout.yaml'
+  /servers:
+    post:
+      $ref: '../swagger/paths/servers/post.yaml'
+  /servers/{serverId}:
+    get:
+      $ref: '../swagger/paths/servers/{serverId}/get.yaml'
+    delete:
+      $ref: '../swagger/paths/servers/{serverId}/delete.yaml'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    cookieRefresh:
+      type: apiKey
+      in: cookie
+      name: refreshToken; Path=/; HttpOnly
+    cookieSessionId:
+      type: apiKey
+      in: cookie
+      name: sessionId; Path=/; HttpOnly

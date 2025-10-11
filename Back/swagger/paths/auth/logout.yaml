@@ -1,0 +1,16 @@
+tags:
+  - Auth
+summary: Logout
+operationId: logout
+description: 'Log from current session out'
+security:
+  - cookieSessionId: []
+responses:
+  '204':
+    description: >
+      Successfully ended session!  
+      Cookies 'sessionId' and 'refreshToken' cleared.
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

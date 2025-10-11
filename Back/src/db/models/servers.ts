@@ -17,10 +17,11 @@ const serversSchema = new Schema(
         },
         img: {
           type: String,
+          required: true,
         },
       },
     ],
-    img: { type: String },
+    img: { type: String, required: true },
   },
   { timestamps: true, versionKey: false },
 );
