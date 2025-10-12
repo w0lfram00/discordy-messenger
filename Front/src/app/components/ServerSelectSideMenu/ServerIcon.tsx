@@ -1,9 +1,9 @@
 import React from "react";
-import type { Server } from "../../interfaces/db";
 import s from "./ServerSelectSideMenu.module.css";
+import { Srvr } from "@/lib/interfaces/api";
 
 interface Props {
-  server: Server;
+  server: Srvr;
 }
 
 const ServerIcon = ({ server }: Props) => {

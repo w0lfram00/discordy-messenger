@@ -6,7 +6,7 @@ import createHttpError from 'http-errors';
 import { randomBytes } from 'crypto';
 
 export const getSrvrInfoController = async (req: Request, res: Response) => {
-  const srvr = await getSrvrInfo(toObjId(req.params.recipeId));
+  const srvr = await getSrvrInfo(toObjId(req.params.srvrId));
 
   if (!srvr) throw createHttpError(404, 'Server not found');
 
@@ -25,10 +25,13 @@ export const createSrvrController = async (
   if (!img) img = 'no-image';
 
   const srvr = await createSrvr({
-    name,
-    img,
-    channels: [{ _id: randomBytes(8).toString('hex'), name: 'general' }],
-    users: [{ _id: req.user._id, name: req.user.name, img: req.user.img }],
+    srvr: {
+      name,
+      img,
+      channels: [{ _id: randomBytes(8).toString('hex'), name: 'general' }],
+      users: [{ _id: req.user._id, name: req.user.name, img: req.user.img }],
+    },
+    user: req.user,
   });
 
   res.status(201).json({

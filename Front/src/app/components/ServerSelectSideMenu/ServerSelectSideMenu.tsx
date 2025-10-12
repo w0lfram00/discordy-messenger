@@ -1,10 +1,10 @@
 import React from "react";
 import ServerIcon from "./ServerIcon";
 import s from "./ServerSelectSideMenu.module.css";
-import { Server } from "@/interfaces/db";
+import { Srvr } from "@/lib/interfaces/api";
 
 type Props = {
-  servers: Array<Server>;
+  servers: Array<Srvr>;
 };
 
 const ServerSelectSideMenu = ({ servers }: Props) => {

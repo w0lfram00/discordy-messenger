@@ -1,0 +1,762 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "discordy",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "description": "This is a documentation of students app"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Auth operations."
+    },
+    {
+      "name": "Servers",
+      "description": "Operations with servers' existence or structure"
+    },
+    {
+      "name": "Users",
+      "description": "Operations with users' data"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "operationId": "register",
+        "description": "Register an account",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "name": {
+                    "description": "Username",
+                    "type": "string",
+                    "example": "Xx_John_Doe_xX"
+                  },
+                  "email": {
+                    "description": "User's email",
+                    "type": "string",
+                    "example": "exmple@gmail.com"
+                  },
+                  "password": {
+                    "description": "User's password",
+                    "type": "string",
+                    "example": "1234qwerty"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully registered a user!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully registered a user!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "operationId": "login",
+        "description": "Login in account",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "properties": {
+                  "email": {
+                    "description": "User's email",
+                    "type": "string",
+                    "example": "exmple@gmail.com"
+                  },
+                  "password": {
+                    "description": "User's password",
+                    "type": "string",
+                    "example": "1234qwerty"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully logged in an account!   The session ID and refresh token are returned in a cookies named 'sessionId' and 'refreshToken'. You need to include those cookies in subsequent requests, if required.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully logged in an user!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "accessToken"
+                      ],
+                      "properties": {
+                        "accessToken": {
+                          "description": "Token for accessing created session",
+                          "example": "KPB1q/g1Kj6+Pr5Fr3Vm5hIzcCdHeMkeh3+tLfGr"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Set-Cookie": {
+                "description": "Sets cookies named 'sessionId' and 'refreshToken'",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string",
+                      "example": "refreshToken=AlFvhVUpo8ernVzDBAcC9xnfbUTMyMkTNud7N5XW; Path=/; HttpOnly"
+                    },
+                    "sessionId": {
+                      "type": "string",
+                      "example": "sessionId=j%3A%22688235b14bbc4fc1ca96119a%22; Path=/; HttpOnly"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Refresh",
+        "operationId": "refresh",
+        "description": "Refresh current session",
+        "security": [
+          {
+            "cookieRefresh": []
+          },
+          {
+            "cookieSessionId": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully refreshed session!   The session ID and refresh token are returned in a cookies named 'sessionId' and 'refreshToken'. You need to include those cookies in subsequent requests, if required.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully refreshed session!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "accessToken"
+                      ],
+                      "properties": {
+                        "accessToken": {
+                          "description": "Token for accessing created session",
+                          "example": "KPB1q/g1Kj6+Pr5Fr3Vm5hIzcCdHeMkeh3+tLfGr"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Set-Cookie": {
+                "description": "Sets cookies named 'sessionId' and 'refreshToken'",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "refreshToken": {
+                      "type": "string",
+                      "example": "refreshToken=AlFvhVUpo8ernVzDBAcC9xnfbUTMyMkTNud7N5XW; Path=/; HttpOnly"
+                    },
+                    "sessionId": {
+                      "type": "string",
+                      "example": "sessionId=j%3A%22688235b14bbc4fc1ca96119a%22; Path=/; HttpOnly"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Logout",
+        "operationId": "logout",
+        "description": "Log from current session out",
+        "security": [
+          {
+            "cookieSessionId": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully ended session!   Cookies 'sessionId' and 'refreshToken' cleared.\n"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/servers": {
+      "post": {
+        "tags": [
+          "Servers"
+        ],
+        "summary": "Create a new server",
+        "operationId": "createSrvr",
+        "description": "Create a new server, creates base channels and joins creator to it",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "description": "Name of created server",
+                    "type": "string",
+                    "example": "Cool server"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created server",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully created a server!"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/server"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/servers/{serverId}": {
+      "get": {
+        "tags": [
+          "Servers"
+        ],
+        "summary": "Get info of a server",
+        "operationId": "getSrvrInfo",
+        "description": "Get info about server by id in path",
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serverId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched for server data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully fetched for server data!"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/server"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Servers"
+        ],
+        "summary": "Delete server",
+        "operationId": "deleteSrvr",
+        "description": "Delete existing server",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "serverId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted server"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "cookieRefresh": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "refreshToken; Path=/; HttpOnly"
+      },
+      "cookieSessionId": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionId; Path=/; HttpOnly"
+      }
+    },
+    "schemas": {
+      "user": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "email"
+        ],
+        "properties": {
+          "_id": {
+            "description": "User's id",
+            "type": "string",
+            "example": "65e4decdd286b30065d54af9"
+          },
+          "name": {
+            "description": "User's shown name",
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "description": "User's email",
+            "type": "string",
+            "example": "exmple@gmail.com"
+          },
+          "servers": {
+            "description": "List of servers User has joined",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "_id",
+                "name",
+                "img"
+              ],
+              "properties": {
+                "_id": {
+                  "description": "Server's id",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of server",
+                  "type": "string"
+                },
+                "img": {
+                  "description": "Url to thumbnail of server (if it has no image returns 'no-image')",
+                  "type": "string"
+                }
+              },
+              "example": "6462a8f74c3d0ddd28898069"
+            }
+          }
+        }
+      },
+      "server": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "img",
+          "channels",
+          "users"
+        ],
+        "properties": {
+          "_id": {
+            "description": "Server's id",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of server",
+            "type": "string"
+          },
+          "img": {
+            "description": "Url to thumbnail of server (if it has no image returns 'no-image')",
+            "type": "string"
+          },
+          "channels": {
+            "description": "Channels in server",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "_id",
+                "name"
+              ],
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "users": {
+            "description": "List of users who has joined this server and a little info about them",
+            "type": "object",
+            "required": [
+              "_id",
+              "name",
+              "img"
+            ],
+            "properties": {
+              "_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "img": {
+                "description": "Url to thumbnail of server (if it has no image returns 'no-image')",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Bad request"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Bad request"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "message": {
+                  "type": "string",
+                  "example": "UnauthorizedError"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Access token expired"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Something* not found"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Something* not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Email is used by others",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 409
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Email is used"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Email is used"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

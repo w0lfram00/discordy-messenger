@@ -14,7 +14,9 @@ requestBody:
           - name
         properties:
           name:
+            description: 'Name of created server'
             type: string
+            example: 'Cool server'
 responses:
   '201':
     description: 'Successfully created server'

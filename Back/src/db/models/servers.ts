@@ -1,10 +1,20 @@
 import { model, Schema } from 'mongoose';
-import { channelsSchema } from './channels.ts';
 
 const serversSchema = new Schema(
   {
     name: { type: String, required: true },
-    channels: [channelsSchema],
+    channels: [
+      {
+        _id: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
     users: [
       {
         _id: {
@@ -26,4 +36,4 @@ const serversSchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-export const ServersCollection = model('Recipe', serversSchema);
+export const ServersCollection = model('Server', serversSchema);
