@@ -1,8 +1,6 @@
 import React from "react";
-// import ServerSelectSideMenu from "../../components/ServerSelectSideMenu/ServerSelectSideMenu";
-// import servers from "../../assets/testData/servers.json";
-// import type { Server } from "../../types/server";
 import s from "./ServersOnSideLayout.module.css";
+import ServerSelectSideMenu from "../components/ServerSelectSideMenu/ServerSelectSideMenu";
 
 interface Props {
   children: React.ReactNode;
@@ -11,7 +9,7 @@ interface Props {
 const ServersOnSideLayout = ({ children }: Props) => {
   return (
     <div className="h-screen">
-      {/* <ServerSelectSideMenu servers={} /> */}
+      <ServerSelectSideMenu />
       <div>{children}</div>
     </div>
   );

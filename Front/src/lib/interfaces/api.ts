@@ -1,3 +1,9 @@
+export interface ApiRequest<T> {
+  status: number;
+  message: string;
+  data: T;
+}
+
 export interface User {
   _id: string;
   img: string;
