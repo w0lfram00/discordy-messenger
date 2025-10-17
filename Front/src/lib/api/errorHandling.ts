@@ -6,10 +6,11 @@ const errorHandling = (e: unknown) => {
       status: e.status,
       message: e.response?.data.message,
     });
-  console.log({
-    status: 500,
-    message: "Unexpected Error",
-  });
+  else
+    console.log({
+      status: 500,
+      message: "Unexpected Error",
+    });
   return null;
 };
 

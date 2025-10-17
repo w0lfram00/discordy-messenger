@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const backendUrl = process.env.BACKEND_URL;
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+console.log(backendUrl);
 
 const discoApi = axios.create({
   baseURL: backendUrl,

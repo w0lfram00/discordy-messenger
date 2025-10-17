@@ -16,10 +16,11 @@ export const createSrvr = async (payload: {
   user: User;
 }): Promise<Srvr> => {
   const srvr = await ServersCollection.create(payload.srvr);
-  if (!srvr)
+  if (srvr)
     await UsersCollection.findByIdAndUpdate(payload.user._id, {
-      servers: [...payload.user.servers],
+      servers: [...payload.user.servers, srvr],
     });
+
   return srvr;
 };
 
