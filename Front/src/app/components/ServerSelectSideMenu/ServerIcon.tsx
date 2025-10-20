@@ -1,20 +1,24 @@
 import React from "react";
-import s from "./ServerSelectSideMenu.module.css";
 import { Srvr, SrvrPreview } from "@/lib/interfaces/api";
+import Img from "@/assets/dog.jpg";
+import Link from "next/link";
 
 interface Props {
   server: SrvrPreview;
 }
 
 const ServerIcon = ({ server }: Props) => {
-  if ((server.img = "no-image"))
-    server.img =
-      "https://media.discordapp.net/attachments/812792334554628137/930852388376567858/unknown.png?ex=68f30f97&is=68f1be17&hm=7f25c61fc371af4568ba61534909fcd47b1dbefa18e097316107f4d012141b05&=&format=webp&quality=lossless&width=827&height=865";
-
   return (
-    <a className={s.serverIcon}>
-      <img src={server.img} alt={server.name} />
-    </a>
+    <Link
+      href={`/${server._id}`}
+      className="h-34 w-34 rounded-4xl overflow-hidden flex"
+    >
+      <img
+        src={server.img != "no-image" ? server.img : Img.src}
+        alt={server.name}
+        className="object-cover place-self-center"
+      />
+    </Link>
   );
 };
 

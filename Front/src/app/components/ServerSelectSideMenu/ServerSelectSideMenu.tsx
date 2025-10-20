@@ -1,7 +1,7 @@
+"use client";
+
 import React from "react";
 import ServerIcon from "./ServerIcon";
-import s from "./ServerSelectSideMenu.module.css";
-import { Srvr, SrvrPreview } from "@/lib/interfaces/api";
 import { useQuery } from "@tanstack/react-query";
 import { getUsersServers } from "@/lib/api/paths/users";
 
@@ -15,7 +15,7 @@ const ServerSelectSideMenu = () => {
   });
 
   return (
-    <div className={s.serverSideMenu}>
+    <div className="h-full w-45 overflow-x-hidden overflow-y-scroll flex flex-col items-center gap-3 p-3 shadow">
       {data &&
         data.map((server) => <ServerIcon key={server._id} server={server} />)}
     </div>

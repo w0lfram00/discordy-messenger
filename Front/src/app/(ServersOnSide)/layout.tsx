@@ -1,7 +1,7 @@
 import React from "react";
 import ServerSelectSideMenu from "../components/ServerSelectSideMenu/ServerSelectSideMenu";
 import getQueryClient from "@/lib/utils/getQueryClient";
-import { dehydrate, HydrationBoundary, useQuery } from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getUsersServers } from "@/lib/api/paths/users";
 
 interface Props {
@@ -24,8 +24,7 @@ const ServersOnSideLayout = async ({ children }: Props) => {
       <HydrationBoundary state={dehydratedState}>
         <ServerSelectSideMenu />
       </HydrationBoundary>
-
-      <div className="ml-90px">{children}</div>
+      <>{children}</>
     </div>
   );
 };

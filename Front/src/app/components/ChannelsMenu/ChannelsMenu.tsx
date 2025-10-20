@@ -1,7 +1,19 @@
+import { Channel } from "@/lib/interfaces/api";
 import React from "react";
+import ChannelItem from "./ChannelItem";
 
-const ChannelsMenu = () => {
-  return <div>ChannelsMenu</div>;
+type Props = {
+  channels: Channel[];
+};
+
+const ChannelsMenu = ({ channels }: Props) => {
+  return (
+    <ul>
+      {channels.map((channel) => (
+        <ChannelItem channel={channel} key={channel._id} />
+      ))}
+    </ul>
+  );
 };
 
 export default ChannelsMenu;
