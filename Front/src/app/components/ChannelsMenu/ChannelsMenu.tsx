@@ -3,15 +3,15 @@ import React from "react";
 import ChannelItem from "./ChannelItem";
 
 type Props = {
-  channels: Channel[];
+  channels?: Channel[];
 };
 
 const ChannelsMenu = ({ channels }: Props) => {
   return (
-    <ul>
-      {channels.map((channel) => (
+    <ul className="w-1/6">
+      {/* {channels.map((channel) => (
         <ChannelItem channel={channel} key={channel._id} />
-      ))}
+      ))} */}
     </ul>
   );
 };

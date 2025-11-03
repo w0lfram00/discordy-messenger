@@ -1,7 +1,6 @@
 import { ApiRequest, Srvr } from "@/lib/interfaces/api";
 import discoApi from "../apiCore";
 import errorHandling from "../errorHandling";
-import { RequestInit } from "next/dist/server/web/spec-extension/request";
 
 export const createSrvr = async (payload: { name: string }) => {
   try {
