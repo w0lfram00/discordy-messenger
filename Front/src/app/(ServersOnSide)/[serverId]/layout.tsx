@@ -19,7 +19,7 @@ const Layout = async ({ params, children }: Props) => {
   await queryClient.prefetchQuery({
     queryKey: ["servers", serverId],
     queryFn: () => getSrvrInfo(serverId),
-    staleTime: 3 * 60 * 1000,
+    staleTime: 50 * 1000,
   });
 
   const dehydratedState = dehydrate(queryClient);
@@ -32,7 +32,7 @@ const Layout = async ({ params, children }: Props) => {
       <div className="w-full flex flex-col">
         <ServerHeader srvr={srvr} />
         <div className="flex w-full flex-1">
-          <ChannelsMenu />
+          <ChannelsMenu srvr={srvr} />
           <div className="w-2/3 bg-neutral-900 border-1 border-gray-600 border-y-0">
             {children}
           </div>

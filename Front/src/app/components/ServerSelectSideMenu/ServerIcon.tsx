@@ -12,6 +12,7 @@ const ServerIcon = ({ server }: Props) => {
     <Link
       href={`/${server._id}`}
       className="h-34 w-34 rounded-4xl overflow-hidden flex"
+      replace
     >
       <img
         src={server.img != "no-image" ? server.img : Img.src}

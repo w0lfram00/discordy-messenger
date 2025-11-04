@@ -12,7 +12,7 @@ const Page = ({ params }: Props) => {
   const { data: srvr } = useQuery({
     queryKey: ["servers", serverId],
     queryFn: () => getSrvrInfo(serverId),
-    staleTime: 3 * 60 * 1000,
+    staleTime: 50 * 1000,
   });
 
   if (!srvr) return null;
