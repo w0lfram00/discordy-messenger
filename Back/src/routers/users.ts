@@ -2,9 +2,18 @@ import { Router } from 'express';
 import { authenticate } from '../middlewares/authenticate.ts';
 import { isValidId } from '../middlewares/isValidId.ts';
 import { ctrlWrapper } from '../utils/ctrlWrapper.ts';
-import { getUsersSrvrsController } from '../controllers/users.ts';
+import {
+  getUsersInfoController,
+  getUsersSrvrsController,
+} from '../controllers/users.ts';
 
 const usersRouter = Router();
+
+usersRouter.get(
+  '/:userId',
+  isValidId('userId'),
+  ctrlWrapper(getUsersInfoController),
+);
 
 usersRouter.get(
   '/:userId/servers',

@@ -30,10 +30,13 @@ responses:
               type: object
               required:
                 - accessToken
+                - userId
               properties:
                 accessToken:
                   description: Token for accessing created session
                   example: 'KPB1q/g1Kj6+Pr5Fr3Vm5hIzcCdHeMkeh3+tLfGr'
+                userId:
+                  type: string
     headers:
       Set-Cookie:
         description: "Sets cookies named 'sessionId' and 'refreshToken'"

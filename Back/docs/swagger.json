@@ -163,12 +163,17 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "accessToken"
+                        "accessToken",
+                        "userId"
                       ],
                       "properties": {
                         "accessToken": {
+                          "type": "string",
                           "description": "Token for accessing created session",
                           "example": "KPB1q/g1Kj6+Pr5Fr3Vm5hIzcCdHeMkeh3+tLfGr"
+                        },
+                        "userId": {
+                          "type": "string"
                         }
                       }
                     }
@@ -244,12 +249,16 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "accessToken"
+                        "accessToken",
+                        "userId"
                       ],
                       "properties": {
                         "accessToken": {
                           "description": "Token for accessing created session",
                           "example": "KPB1q/g1Kj6+Pr5Fr3Vm5hIzcCdHeMkeh3+tLfGr"
+                        },
+                        "userId": {
+                          "type": "string"
                         }
                       }
                     }
@@ -462,6 +471,123 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get info of a user",
+        "operationId": "getUsersInfo",
+        "description": "Get info about user by id in path",
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched for users data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully fetched for users data!"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          }
+        }
+      }
+    },
+    "/users/{userId}/servers": {
+      "get": {
+        "tags": [
+          "Servers"
+        ],
+        "summary": "Get servers of a user",
+        "operationId": "getUsersServers",
+        "description": "Get list of all servers that user has joined",
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched for list of servers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully fetched for list of servers!"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/server"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/401"

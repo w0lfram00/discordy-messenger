@@ -36,6 +36,12 @@ paths:
       $ref: '../swagger/paths/servers/{serverId}/get.yaml'
     delete:
       $ref: '../swagger/paths/servers/{serverId}/delete.yaml'
+  /users/{userId}:
+    get:
+      $ref: '../swagger/paths/users/{userId}/get.yaml'
+  /users/{userId}/servers:
+    get:
+      $ref: '../swagger/paths/users/{userId}/servers/get.yaml'
 components:
   securitySchemes:
     bearerAuth:

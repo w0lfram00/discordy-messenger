@@ -24,9 +24,10 @@ export const loginUser = async (payload: {
 }) => {
   try {
     const { data: response } = await discoApi.post<
-      ApiRequest<{ accessToken: string }>
+      ApiRequest<{ accessToken: string; userId: string }>
     >("/auth/login", payload);
     setAuthHeader(response.data.accessToken);
+    localStorage.setItem("assessToken", response.data.accessToken);
     return response.data;
   } catch (e) {
     errorHandling(e);
@@ -36,20 +37,24 @@ export const loginUser = async (payload: {
 export const logoutUser = async () => {
   try {
     await discoApi.post("/auth/logout");
-    setAuthHeader("");
   } catch (e) {
     errorHandling(e);
+  } finally {
+    localStorage.removeItem("assessToken");
+    setAuthHeader("");
   }
 };
 
 export const refreshUser = async () => {
   try {
     const { data: response } = await discoApi.post<
-      ApiRequest<{ accessToken: string }>
+      ApiRequest<{ accessToken: string; userId: string }>
     >("/auth/refresh");
     setAuthHeader(response.data.accessToken);
+    localStorage.setItem("assessToken", response.data.accessToken);
     return response.data;
   } catch (e) {
+    setAuthHeader("");
     errorHandling(e);
   }
 };
